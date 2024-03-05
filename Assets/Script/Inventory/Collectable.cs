@@ -15,7 +15,7 @@ namespace Assets.Inventory
         public CollectableType type;
         public int quantity;
         public Sprite icon;
-        public float price;
+        public int price;
         private void Awake()
         {
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();

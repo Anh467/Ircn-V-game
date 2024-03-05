@@ -40,6 +40,10 @@ namespace Assets.Script
         {
             this.count += quantity;
         }
+        public void RemoveQuantity(int quantity)
+        {
+            this.count -= quantity;
+        }
         public void ThrowQuantity(int quantity)
         {
             this.count -= quantity;

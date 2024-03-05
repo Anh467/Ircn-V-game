@@ -44,10 +44,8 @@ public class Inventory
                     itemTemp.AddQuantity(item.count - numOverbalance);
                     item.ThrowQuantity(item.count - numOverbalance);
                 }
-                
             }
         }
         // II. Neeus k con them 1slot moi 
     }
-
 }

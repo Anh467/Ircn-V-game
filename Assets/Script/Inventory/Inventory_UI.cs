@@ -39,6 +39,14 @@ public class Inventory_UI : MonoBehaviour
         {
             ToggleInventory();
         }
+
+        bool shop = true;
+        //gần shop thì bằng true
+        if (Input.GetKeyDown(KeyCode.F) && shop)
+        {
+            ToggleInventory();
+        }
+
         SetUp();
     }
     public void selectItem()

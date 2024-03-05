@@ -10,13 +10,13 @@ using Unity.VisualScripting;
 public class player : MonoBehaviour
 {
     // declare 
-    
+
     [SerializeField]
     private Animator animator;
     [SerializeField]
     public string item_hold;
     [SerializeField]
-    public string player_position= DeclareVariable.POSITION_PLAYER_DOWN;
+    public string player_position = DeclareVariable.POSITION_PLAYER_DOWN;
     [SerializeField]
     private float speed = 3f;
     [SerializeField]
@@ -61,13 +61,13 @@ public class player : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         //gameObject.hideFlag
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         moveVertical = Input.GetAxisRaw("Vertical");
@@ -81,7 +81,8 @@ public class player : MonoBehaviour
 
         UpdatePosition();
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             Vector3Int position = new Vector3Int((int)transform.position.x,
                 (int)transform.position.y, 0);
 
@@ -124,7 +125,7 @@ public class player : MonoBehaviour
     }
     void UpdateSelectItem()
     {
-        slot_select_item.SetItem(inventory.items[select_item_index]);   
+        slot_select_item.SetItem(inventory.items[select_item_index]);
     }
     void UpdateBudget()
     {
@@ -135,44 +136,44 @@ public class player : MonoBehaviour
         var horizontal = moveHorizontal;
         var vertical = moveVertical;
         if (horizontal == 0 && vertical == 0) return;
-        if (horizontal > 0  && vertical == 0) current_position = DeclareVariable.POSITION_PLAYER_RIGHT ;
-        if (horizontal == 0 && vertical > 0) current_position = DeclareVariable.POSITION_PLAYER_UP ;
-        if (horizontal < 0 && vertical == 0) current_position = DeclareVariable.POSITION_PLAYER_LEFT ;
-        if (horizontal == 0 && vertical < 0) current_position = DeclareVariable.POSITION_PLAYER_DOWN ;
+        if (horizontal > 0 && vertical == 0) current_position = DeclareVariable.POSITION_PLAYER_RIGHT;
+        if (horizontal == 0 && vertical > 0) current_position = DeclareVariable.POSITION_PLAYER_UP;
+        if (horizontal < 0 && vertical == 0) current_position = DeclareVariable.POSITION_PLAYER_LEFT;
+        if (horizontal == 0 && vertical < 0) current_position = DeclareVariable.POSITION_PLAYER_DOWN;
         //return "";
     }
     void Moving()
     {
         if (moveHorizontal == 0 && moveVertical == 0)
         {
-           
+
             //audioData.Stop();
             audioData.Play();
         }
         else
         {
-          
 
-            
+
+
         }
         if (animator.GetBool("isHoe")) return;
-        
+
         Vector3 direction = new Vector3(moveHorizontal, moveVertical);
         AnimateMove(direction);
         transform.position += direction * speed * Time.deltaTime;
-        
+
     }
-/*    void Axeing()
-    {
-        if (inventory.items[select_item_index].type != CollectableType.TOOL_AXE) return;
-        if (!(!animator.GetBool("isMoving") && !animator.GetBool("isHoe") && !animator.GetBool("isAxe"))) return;
-        if (Input.GetMouseButtonDown(0))
+    /*    void Axeing()
         {
+            if (inventory.items[select_item_index].type != CollectableType.TOOL_AXE) return;
+            if (!(!animator.GetBool("isMoving") && !animator.GetBool("isHoe") && !animator.GetBool("isAxe"))) return;
+            if (Input.GetMouseButtonDown(0))
             {
-                StartCoroutine(PlayAnimation("isAxe"));      
+                {
+                    StartCoroutine(PlayAnimation("isAxe"));      
+                }
             }
-        }
-    }*/
+        }*/
     void RightClickEvent()
     {
         try
@@ -186,32 +187,52 @@ public class player : MonoBehaviour
                 StartCoroutine(PlayAnimation(selectItem));
                 isRightClickEventRunning = false;
             }
+            //ở gần shop
+            bool nearShop = true;
+            if (Input.GetKeyDown(KeyCode.L) && nearShop)
+            {
+                var selectItem = inventory.items[select_item_index].type;
+                var price = Sell_Items.Instance.Sell(selectItem);
+                if (price != null)
+                {
+                    if (inventory.items[select_item_index].count > 1)
+                    {
+                        inventory.items[select_item_index].RemoveQuantity(1);
+                    }
+                    else
+                    {
+                        inventory.items[select_item_index] = new Item();
+                    }
+
+                    inventory.PlayerBudget += price ?? 0;
+                }
+            }
         }
-        catch(System.Exception ex)
+        catch (System.Exception ex)
         {
             Debug.Log(ex.Message);
         }
-       
+
     }
-/*    void Hoeing()
-    {
-        if (inventory.items[select_item_index].type != CollectableType.TOOL_HOE) return;
-        if (!(!animator.GetBool("isMoving") && !animator.GetBool("isHoe") && !animator.GetBool("isAxe"))) return;
-        if (Input.GetMouseButtonDown(0))
+    /*    void Hoeing()
         {
-            
-           
+            if (inventory.items[select_item_index].type != CollectableType.TOOL_HOE) return;
+            if (!(!animator.GetBool("isMoving") && !animator.GetBool("isHoe") && !animator.GetBool("isAxe"))) return;
+            if (Input.GetMouseButtonDown(0))
             {
-                StartCoroutine(PlayAnimation("isHoe"));
-                
+
+
+                {
+                    StartCoroutine(PlayAnimation("isHoe"));
+
+                }
             }
-        }
-    }*/
+        }*/
     void AnimateMove(Vector3 direction)
     {
         if (animator != null)
         {
-            if(direction.magnitude > 0)
+            if (direction.magnitude > 0)
             {
                 animator.SetBool("isMoving", true);
                 animator.SetFloat("horizontal", direction.x);
@@ -228,7 +249,7 @@ public class player : MonoBehaviour
     {
         // declare
         var animationStr = string.Empty;
-       
+
         speed = 0;
         // check is tool
         switch (collectableType)
@@ -263,23 +284,23 @@ public class player : MonoBehaviour
         switch (current_position)
         {
             case DeclareVariable.POSITION_PLAYER_RIGHT:
-                x = math.floor( transform.position.x + 1f );
+                x = math.floor(transform.position.x + 1f);
                 y = math.floor(transform.position.y);
                 break;
             case DeclareVariable.POSITION_PLAYER_UP:
                 x = math.floor(transform.position.x);
-                y = math.floor(transform.position.y + 1f); 
+                y = math.floor(transform.position.y + 1f);
                 break;
             case DeclareVariable.POSITION_PLAYER_LEFT:
                 x = math.floor(transform.position.x - 1f);
-                y = math.floor(transform.position.y); 
+                y = math.floor(transform.position.y);
                 break;
             case DeclareVariable.POSITION_PLAYER_DOWN:
                 x = math.floor(transform.position.x);
-                y = math.floor(transform.position.y - 1f); 
+                y = math.floor(transform.position.y - 1f);
                 break;
         }
-        Vector3Int position = new Vector3Int((int) x, (int) y);
+        Vector3Int position = new Vector3Int((int)x, (int)y);
         Debug.Log($"This is player position {transform.position}");
         Debug.Log($"This is hoe position {position}");
         if (GameMannager.instance.tileMannager.IsInteractable(position))
@@ -323,10 +344,26 @@ public class player : MonoBehaviour
                 default: break;
             }
             //Thread.Sleep(200);
-            
+
         }
     }
-
+    void SellProduct()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Inventory_UI.instance.unSelectItem();
+            if (select_item_index == inventory.items.Count - 1)
+            {
+                select_item_index = 0;
+            }
+            else
+            {
+                ++select_item_index;
+            }
+            Inventory_UI.instance.selectItem();
+            return;
+        }
+    }
 
 
 }
