@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Sell_Items : MonoBehaviour
+public class shopItems : MonoBehaviour
 {
-    public static Sell_Items Instance;
+    public static shopItems Instance;
     [SerializeField]
     List<GameObject> Items;
     private void Awake()

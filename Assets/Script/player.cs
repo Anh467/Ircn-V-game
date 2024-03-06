@@ -10,7 +10,7 @@ using Unity.VisualScripting;
 public class player : MonoBehaviour
 {
     // declare 
-
+    private bool shop = false;
     [SerializeField]
     private Animator animator;
     [SerializeField]
@@ -188,11 +188,10 @@ public class player : MonoBehaviour
                 isRightClickEventRunning = false;
             }
             //ở gần shop
-            bool nearShop = true;
-            if (Input.GetKeyDown(KeyCode.L) && nearShop)
+            if (Input.GetKeyDown(KeyCode.L) && shop)
             {
                 var selectItem = inventory.items[select_item_index].type;
-                var price = Sell_Items.Instance.Sell(selectItem);
+                var price = shopItems.Instance.Sell(selectItem);
                 if (price != null)
                 {
                     if (inventory.items[select_item_index].count > 1)
@@ -365,5 +364,20 @@ public class player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "shop")
+        {
+            shop = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "shop")
+        {
+            shop = false;
+        }
+    }
 
 }

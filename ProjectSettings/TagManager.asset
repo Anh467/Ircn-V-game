@@ -8,6 +8,7 @@ TagManager:
   - tool_axe
   - player
   - collectable
+  - shop
   layers:
   - Default
   - TransparentFX
