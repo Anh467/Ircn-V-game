@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlayerPosition
   m_EditorClassIdentifier: 
   initialValue: {x: 0, y: 0}
+  player: {fileID: 5594538721906672703, guid: d9833f926f5e895489fe2a745994f8cd, type: 3}
