@@ -9,6 +9,8 @@ TagManager:
   - player
   - collectable
   - shop
+  - shopItems
+  - shopItemsIcon
   layers:
   - Default
   - TransparentFX

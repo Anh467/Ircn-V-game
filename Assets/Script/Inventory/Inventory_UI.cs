@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory_UI : MonoBehaviour
 {
     public GameObject inventoryPanel;
+    public GameObject shopSellInventory;
     public static Inventory_UI instance;
     public List<Slot_UI> slots_UI;
     [SerializeField] 
@@ -29,7 +31,6 @@ public class Inventory_UI : MonoBehaviour
         {
             slots_UI.Add(new Slot_UI());
         }*/
-
     }
 
     // Update is called once per frame
@@ -37,14 +38,7 @@ public class Inventory_UI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            ToggleInventory();
-        }
-
-        bool shop = true;
-        //gần shop thì bằng true
-        if (Input.GetKeyDown(KeyCode.F) && shop)
-        {
-            ToggleInventory();
+            ToggleInventory(inventoryPanel, shopSellInventory, shopItems.Instance.NearShop());
         }
 
         SetUp();
@@ -57,17 +51,22 @@ public class Inventory_UI : MonoBehaviour
     {
         slots_UI[playerr.select_item_index].SetBackGroundColor(new Color(190 / 255f, 176 / 255f, 176 / 255f));
     }
-    public void ToggleInventory()
+    public void ToggleInventory(GameObject inventory, GameObject shop, bool isShop)
     {
-        if (!inventoryPanel.activeSelf)
+        if (!inventory.activeSelf || (!shop.activeSelf && isShop))
         {
-            inventoryPanel.SetActive(true);
-            //SetUp();
+            Time.timeScale = 0;
+            inventory.SetActive(true);
+            if (isShop)
+            {
+                shop.SetActive(true);
+            }
         }
         else
         {
-            inventoryPanel.SetActive(false);
-
+            Time.timeScale = 1;
+            inventory.SetActive(false);
+            shop.SetActive(false);
         }
     }
     public void SetUp()

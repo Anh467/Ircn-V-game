@@ -10,7 +10,6 @@ using Unity.VisualScripting;
 public class player : MonoBehaviour
 {
     // declare 
-    private bool shop = false;
     [SerializeField]
     private Animator animator;
     [SerializeField]
@@ -91,6 +90,7 @@ public class player : MonoBehaviour
         SelectItem();
         UpdateSelectItem();
         UpdateBudget();
+        ShopPanel();
     }
     void SelectItem()
     {
@@ -186,25 +186,6 @@ public class player : MonoBehaviour
                 var selectItem = inventory.items[select_item_index].type;
                 StartCoroutine(PlayAnimation(selectItem));
                 isRightClickEventRunning = false;
-            }
-            //ở gần shop
-            if (Input.GetKeyDown(KeyCode.L) && shop)
-            {
-                var selectItem = inventory.items[select_item_index].type;
-                var price = shopItems.Instance.Sell(selectItem);
-                if (price != null)
-                {
-                    if (inventory.items[select_item_index].count > 1)
-                    {
-                        inventory.items[select_item_index].RemoveQuantity(1);
-                    }
-                    else
-                    {
-                        inventory.items[select_item_index] = new Item();
-                    }
-
-                    inventory.PlayerBudget += price ?? 0;
-                }
             }
         }
         catch (System.Exception ex)
@@ -346,38 +327,27 @@ public class player : MonoBehaviour
 
         }
     }
-    void SellProduct()
+
+    void ShopPanel()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        //ở gần shop
+        var selectItem = inventory.items[select_item_index].type;
+        var price = shopItems.Instance.PriceSell(selectItem);
+        if (Input.GetKeyDown(KeyCode.L) && shopItems.Instance.NearShop())
         {
-            Inventory_UI.instance.unSelectItem();
-            if (select_item_index == inventory.items.Count - 1)
+            if (price != null)
             {
-                select_item_index = 0;
+                if (inventory.items[select_item_index].count > 1)
+                {
+                    inventory.items[select_item_index].RemoveQuantity(1);
+                }
+                else
+                {
+                    inventory.items[select_item_index] = new Item();
+                }
+
+                inventory.PlayerBudget += price ?? 0;
             }
-            else
-            {
-                ++select_item_index;
-            }
-            Inventory_UI.instance.selectItem();
-            return;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "shop")
-        {
-            shop = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "shop")
-        {
-            shop = false;
-        }
-    }
-
 }
