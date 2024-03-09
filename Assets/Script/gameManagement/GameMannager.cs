@@ -22,15 +22,15 @@ public class GameMannager : MonoBehaviour
     }
     public void Awake()
     {
-        //if (instance != null && instance != this)
-        if (instance != this)
-            {
+        if (instance != null && instance != this)
+        //if (instance != this)
+        {
             Destroy(this.gameObject);
         }
         else
         {
             instance = this;
-            GameObject.DontDestroyOnLoad(this.gameObject);
+            //GameObject.DontDestroyOnLoad(this.gameObject);
         }
 
         tileMannager = GetComponent<TileMannager>();
