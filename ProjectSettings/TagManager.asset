@@ -11,6 +11,8 @@ TagManager:
   - shop
   - shopItems
   - shopItemsIcon
+  - buyShop
+  - sellShop
   layers:
   - Default
   - TransparentFX

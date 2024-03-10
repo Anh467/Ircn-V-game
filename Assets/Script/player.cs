@@ -7,6 +7,8 @@ using Assets.Script;
 using System;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using static UnityEditor.Progress;
+using Assets.Inventory;
 public class player : MonoBehaviour
 {
     // declare 
@@ -96,7 +98,7 @@ public class player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Inventory_UI.instance.unSelectItem();
+            Inventory_UI.instance.unSelectItem(select_item_index);
             if (select_item_index == 0)
             {
                 select_item_index = inventory.items.Count - 1;
@@ -105,12 +107,12 @@ public class player : MonoBehaviour
             {
                 --select_item_index;
             }
-            Inventory_UI.instance.selectItem();
+            Inventory_UI.instance.selectItem(select_item_index);
             return;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Inventory_UI.instance.unSelectItem();
+            Inventory_UI.instance.unSelectItem(select_item_index);
             if (select_item_index == inventory.items.Count - 1)
             {
                 select_item_index = 0;
@@ -119,7 +121,7 @@ public class player : MonoBehaviour
             {
                 ++select_item_index;
             }
-            Inventory_UI.instance.selectItem();
+            Inventory_UI.instance.selectItem(select_item_index);
             return;
         }
     }
@@ -331,22 +333,41 @@ public class player : MonoBehaviour
     void ShopPanel()
     {
         //ở gần shop
-        var selectItem = inventory.items[select_item_index].type;
-        var price = shopItems.Instance.PriceSell(selectItem);
-        if (Input.GetKeyDown(KeyCode.L) && shopItems.Instance.NearShop())
+        if (shopItems.Instance.NearShop())
         {
-            if (price != null)
+            var selectItem = inventory.items[select_item_index].type;
+            var price = shopItems.Instance.SellPriceOnShop(selectItem);
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                if (inventory.items[select_item_index].count > 1)
+                if (price != null)
                 {
-                    inventory.items[select_item_index].RemoveQuantity(1);
-                }
-                else
-                {
-                    inventory.items[select_item_index] = new Item();
-                }
+                    if (inventory.items[select_item_index].count > 1)
+                    {
+                        inventory.items[select_item_index].RemoveQuantity(1);
+                    }
+                    else
+                    {
+                        inventory.items[select_item_index] = new Assets.Script.Item();
+                    }
 
-                inventory.PlayerBudget += price ?? 0;
+                    inventory.PlayerBudget += price ?? 0;
+                }
+            }
+        }
+        if (shopItems.Instance.NearShop2())
+        {
+            var buyItems = shopItems.Instance.GetBuyShopItems();
+            var collectable = buyItems[select_item_index].GetComponent<Collectable>();
+            var priceBuy = shopItems.Instance.BuyPriceOnShop(collectable.type);
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (priceBuy != null && priceBuy <= inventory.PlayerBudget)
+                {
+
+                    var newItem = collectable.BuyItem();
+                    inventory.Add(newItem);
+                    inventory.PlayerBudget -= priceBuy ?? 0;
+                }
             }
         }
     }

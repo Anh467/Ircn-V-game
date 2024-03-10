@@ -9,7 +9,7 @@ namespace Assets.Inventory
 {
     internal class Collectable : MonoBehaviour
     {
-        
+
         public Item item;
         [SerializeField]
         public CollectableType type;
@@ -24,8 +24,9 @@ namespace Assets.Inventory
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            
-           if (collision != null && collision.tag == DeclareVariable.TAG_PLAYER) {
+
+            if (collision != null && collision.tag == DeclareVariable.TAG_PLAYER)
+            {
                 player player = collision.GetComponent<player>();
                 if (player)
                 {
@@ -39,14 +40,22 @@ namespace Assets.Inventory
                 //Debug.Log("NOT player");
             }
         }
+        public Item GetItem()
+        {
+            return new Item(type, 999, icon);
+        }
+        public Item BuyItem()
+        {
+            return new Item(type, 1, icon);
+        }
     }
 }
 
 public enum CollectableType
 {
-    NONE, 
+    NONE,
     TOOL_AXE, TOOL_WATERING, TOOL_HOE,
-    SEED_CARROT, SEED_CORN,  SEED_PUMPKIN, SEED_BLUE_STAR_FRUIT,
+    SEED_CARROT, SEED_CORN, SEED_PUMPKIN, SEED_BLUE_STAR_FRUIT,
     PRODUCT_PLANT_CORN, PRODUCT_PLANT_CARROT, PRODUCT_PLANT_PUMPKIN, PRODUCT_PLANT_BLUE_STAR_FRUIT
 }
 public enum CollectablePlant

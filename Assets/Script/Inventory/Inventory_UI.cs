@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.Inventory;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +11,8 @@ public class Inventory_UI : MonoBehaviour
     public GameObject shopSellInventory;
     public static Inventory_UI instance;
     public List<Slot_UI> slots_UI;
-    [SerializeField] 
+
+    [SerializeField]
     public player playerr;
     private void Awake()
     {
@@ -36,20 +39,28 @@ public class Inventory_UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            ToggleInventory(inventoryPanel, shopSellInventory, shopItems.Instance.NearShop());
+            ToggleInventory(inventoryPanel, shopSellInventory, shopItems.Instance.NearShop() || shopItems.Instance.NearShop2());
+            if (shopItems.Instance.NearShop2())
+            {
+                SetUpShop();
+            }
+            else
+            {
+                SetUp();
+            }
         }
 
-        SetUp();
     }
-    public void selectItem()
+    public void selectItem(int index)
     {
-        slots_UI[playerr.select_item_index].SetBackGroundColor(Color.green);
+        slots_UI[index].SetBackGroundColor(Color.green);
     }
-    public void unSelectItem()
+    public void unSelectItem(int index)
     {
-        slots_UI[playerr.select_item_index].SetBackGroundColor(new Color(190 / 255f, 176 / 255f, 176 / 255f));
+        slots_UI[index].SetBackGroundColor(new Color(190 / 255f, 176 / 255f, 176 / 255f));
     }
     public void ToggleInventory(GameObject inventory, GameObject shop, bool isShop)
     {
@@ -71,9 +82,9 @@ public class Inventory_UI : MonoBehaviour
     }
     public void SetUp()
     {
-        if(slots_UI.Count == playerr.inventory.items.Count)
+        if (slots_UI.Count == playerr.inventory.items.Count)
         {
-            for(int i = 0; i< slots_UI.Count; i++)
+            for (int i = 0; i < slots_UI.Count; i++)
             {
                 if (playerr.inventory.items[i].type != CollectableType.NONE)
                 {
@@ -85,6 +96,15 @@ public class Inventory_UI : MonoBehaviour
                 }
             }
         }
-        
+
+    }
+    private void SetUpShop()
+    {
+        var buyItems = shopItems.Instance.GetBuyShopItems();
+        for (int i = 0; i < buyItems.Count; i++)
+        {
+            Collectable collectable = buyItems[i].GetComponent<Collectable>();
+            slots_UI[i].SetItem(collectable.GetItem());
+        }
     }
 }
