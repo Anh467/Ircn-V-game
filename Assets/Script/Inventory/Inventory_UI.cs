@@ -39,20 +39,18 @@ public class Inventory_UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             ToggleInventory(inventoryPanel, shopSellInventory, shopItems.Instance.NearShop() || shopItems.Instance.NearShop2());
-            if (shopItems.Instance.NearShop2())
-            {
-                SetUpShop();
-            }
-            else
-            {
-                SetUp();
-            }
         }
-
+        if (shopItems.Instance.NearShop2())
+        {
+            SetUpShop();
+        }
+        else
+        {
+            SetUp();
+        }
     }
     public void selectItem(int index)
     {
