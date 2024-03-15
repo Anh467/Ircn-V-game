@@ -93,6 +93,7 @@ public class player : MonoBehaviour
         UpdateSelectItem();
         UpdateBudget();
         ShopPanel();
+        GameOverCheck();
     }
     void SelectItem()
     {
@@ -370,5 +371,26 @@ public class player : MonoBehaviour
                 }
             }
         }
+    }
+    float timeOverCount = 0;
+    int hardMode = 1;
+    int moneyToLife = 1000;
+    public bool GameOverCheck()
+    {
+        timeOverCount += Time.deltaTime;
+        Debug.Log(timeOverCount);
+        if (timeOverCount > 300f)
+        {
+            inventory.PlayerBudget -= moneyToLife * hardMode;
+            hardMode += 1;
+            timeOverCount = 0;
+            if (inventory.PlayerBudget < 0)
+            {
+                //gameover
+                Destroy(gameObject);
+            }
+        }
+
+        return false;
     }
 }
