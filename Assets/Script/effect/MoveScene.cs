@@ -8,7 +8,8 @@ public class MoveScene : MonoBehaviour
     // Start is called before the first frame update
     public int sceneBuildIndex;
     public Vector2 playerPosition;
-    public VectorValue playerStore;
+    private string farmScene = "SampleScene";
+
 
     // Level move zoned enter, if collider is a player
     // Move game to another scene
@@ -17,8 +18,9 @@ public class MoveScene : MonoBehaviour
         // Tags work too. Maybe some players have different script components?
         if (other.tag == "player" && !other.isTrigger) {
             // Player entered, so move level
-            playerStore.initialValue = playerPosition;
+
             SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
         }
     }
+
 }

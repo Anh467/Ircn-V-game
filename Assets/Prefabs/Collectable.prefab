@@ -127,3 +127,4 @@ MonoBehaviour:
   type: 1
   quantity: 500
   icon: {fileID: -723361887, guid: 43337b5934d49c64da0508c43c332105, type: 3}
+  price: 0

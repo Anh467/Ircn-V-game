@@ -46,29 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7ab16299d1f884792147b168d66120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  period: 0
+  continue_plant: 0
+  sprites: []
   collectablePlant: 1
   product: {fileID: 2990505224046346402, guid: a006dedda79b89641b00f8071c9ba9b6, type: 3}
-  spritesPlant_Corn:
-  - {fileID: 1067515905, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: 2079383048, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: 2063076811, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: 854788841, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: 1856535709, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  spritesPlant_Carrot:
-  - {fileID: 1045339497, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: -2064379936, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: 1246865702, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: -773987329, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  spritesPlant_Pumpkin:
-  - {fileID: 1106958740, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: 506465921, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: -226274938, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: -1827062693, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  spritesPlant_blueStarFruit:
-  - {fileID: -678507287, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: 1805727780, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: -72719275, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
-  - {fileID: 691455026, guid: 893a9ce9cf8cbee429bdcaca4176ac54, type: 3}
   spriteRenderer: {fileID: 8368176913354573808}
   countdownTime: 60
 --- !u!212 &8368176913354573808

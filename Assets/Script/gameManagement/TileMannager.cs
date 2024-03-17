@@ -42,6 +42,13 @@ public class TileMannager : MonoBehaviour
     }
     public bool IsInteractable(Vector3Int position)
     {
+        if(position == null)
+        {
+            return false;
+        }
+        else
+        {
+
         TileBase tile = interactableMap.GetTile(position);  
 
         if (tile != null)
@@ -56,9 +63,12 @@ public class TileMannager : MonoBehaviour
         {
             //Debug.Log("title is null");
         }
+        }
+
         return false;
+
     }
-   
+
     public void SetPlant(Vector3Int position, CollectablePlant collectablePlant)
     {
         if (!IsHoed(position))
