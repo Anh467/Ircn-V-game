@@ -14,6 +14,7 @@ public class PlayGame : MonoBehaviour
 
     public void Quit(AudioSource audio)
     {
+        audio.Play();
         Application.Quit();
     }
 }
