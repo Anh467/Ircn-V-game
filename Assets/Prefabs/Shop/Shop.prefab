@@ -225,6 +225,7 @@ MonoBehaviour:
   - {fileID: 9095211582531866837, guid: 688536c729713a447abac2e3d88a9cad, type: 3}
   status: {fileID: 0}
   price: {fileID: 0}
+  LevelText: {fileID: 0}
 --- !u!1 &4251710251371488067
 GameObject:
   m_ObjectHideFlags: 0
