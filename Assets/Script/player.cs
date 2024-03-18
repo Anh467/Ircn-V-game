@@ -361,7 +361,8 @@ public class player : MonoBehaviour
         {
             var buyItems = shopItems.Instance.GetBuyShopItems();
             var collectable = buyItems[select_item_index].GetComponent<Collectable>();
-            var priceBuy = shopItems.Instance.BuyPriceOnShop(collectable.type);
+            var priceBuy = shopItems.Instance.BuyPriceOnShop(collectable.type, select_item_index);
+            if (shopItems.Instance.GetLevel() < select_item_index) priceBuy = null;
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if (priceBuy != null && priceBuy <= inventory.PlayerBudget)

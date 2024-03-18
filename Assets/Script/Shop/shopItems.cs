@@ -37,8 +37,13 @@ public class shopItems : MonoBehaviour
     {
         LevelText.text = Level.ToString();
     }
-    public int? BuyPriceOnShop(CollectableType type)
+    public int? BuyPriceOnShop(CollectableType type, int index)
     {
+        if (index+1>Level) 
+        {
+            SetPrice(null, "Thong tin san pham");
+            return null;
+        }
         var Item = BuyItems.FirstOrDefault(x =>
         {
             Collectable collectable = x.GetComponent<Collectable>();
