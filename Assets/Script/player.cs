@@ -9,6 +9,8 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using static UnityEditor.Progress;
 using Assets.Inventory;
+using UnityEngine.SceneManagement;
+
 public class player : MonoBehaviour
 {
     // declare 
@@ -388,6 +390,7 @@ public class player : MonoBehaviour
             {
                 //gameover
                 Destroy(gameObject);
+                SceneManager.LoadScene(4);
             }
         }
 
