@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: item_product_pumpkin Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 9095211582531866837, guid: 688536c729713a447abac2e3d88a9cad, type: 3}
+      propertyPath: m_TagString
+      value: product
+      objectReference: {fileID: 0}
     - target: {fileID: 9095211582531866838, guid: 688536c729713a447abac2e3d88a9cad, type: 3}
       propertyPath: m_Sprite
       value: 

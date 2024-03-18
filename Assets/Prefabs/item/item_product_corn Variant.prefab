@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: item_product_corn Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8703163663562163788, guid: cfb2a7e50dadbc4469b031d617edeed8, type: 3}
+      propertyPath: m_TagString
+      value: product
+      objectReference: {fileID: 0}
     - target: {fileID: 8703163663562163790, guid: cfb2a7e50dadbc4469b031d617edeed8, type: 3}
       propertyPath: m_RootOrder
       value: 0

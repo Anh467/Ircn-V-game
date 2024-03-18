@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: item_product_blue_star_fruit  Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5670931938319375976, guid: 09f698775ee377048b71227c73d673ae, type: 3}
+      propertyPath: m_TagString
+      value: product
+      objectReference: {fileID: 0}
     - target: {fileID: 5670931938319375978, guid: 09f698775ee377048b71227c73d673ae, type: 3}
       propertyPath: m_RootOrder
       value: 0

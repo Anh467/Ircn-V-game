@@ -14,6 +14,7 @@ TagManager:
   - buyShop
   - sellShop
   - inventoryBg
+  - product
   layers:
   - Default
   - TransparentFX

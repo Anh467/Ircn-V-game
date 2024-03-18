@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Script;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -56,17 +57,19 @@ public class SaveFarm : MonoBehaviour
             {
                 foreach (GameObject go in rootGameObjects)
                 {
-                    if (!IsInDontDestroyOnLoad(go) && go.name != "CheckScene")
+                    if (!IsInDontDestroyOnLoad(go) )
+                    {
+                        DontDestroyOnLoad(go);
+                    }
+                    else if (go.tag == DeclareVariable.TAG_PRODUCT)
                     {
                         DontDestroyOnLoad(go);
                     }
                     else
                     {
-                        if(go.name != "CheckScene")
-                        {
-                            Destroy(go);
-                        }
+                            Destroy(go);   
                     }
+
                 }
             }
         }

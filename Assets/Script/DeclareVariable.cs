@@ -24,6 +24,7 @@ namespace Assets.Script
         public const string TAG_TOOL_AXE = "tool_axe";
         public const string TAG_TOOL_WATER = "tool_water";
         public const string TAG_PLAYER = "player";
+        public const string TAG_PRODUCT = "product";
         public const string TAG_COLLECTABLE = "collectable";
 
         // up
