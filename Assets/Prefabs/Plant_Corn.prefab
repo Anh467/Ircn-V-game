@@ -97,10 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7ab16299d1f884792147b168d66120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  period: 0
+  continue_plant: 0
+  sprites: []
   collectablePlant: 0
-  spritesPlant_Corn: []
-  spritesPlant_Carrot: []
-  spritesPlant_Pumpkin: []
-  spritesPlant_blueStarFruit: []
+  product: {fileID: 0}
   spriteRenderer: {fileID: 9115626463510940370}
   countdownTime: 60

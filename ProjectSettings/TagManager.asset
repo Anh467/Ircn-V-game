@@ -13,6 +13,7 @@ TagManager:
   - shopItemsIcon
   - buyShop
   - sellShop
+  - inventoryBg
   layers:
   - Default
   - TransparentFX
