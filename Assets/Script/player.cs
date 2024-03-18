@@ -375,12 +375,12 @@ public class player : MonoBehaviour
         }
     }
     float timeOverCount = 0;
-    int moneyToLife = 1;
+    int moneyToLife = 100;
     public bool GameOverCheck()
     {
         timeOverCount += Time.deltaTime;
         Debug.Log(timeOverCount);
-        if (timeOverCount > 3f)
+        if (timeOverCount > 300f)
         {
             inventory.PlayerBudget -= moneyToLife * shopItems.Instance.GetLevel();
             shopItems.Instance.IncLevel();
