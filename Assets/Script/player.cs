@@ -389,7 +389,6 @@ public class player : MonoBehaviour
             {
                 //gameover
                 Destroy(gameObject);
-                SceneManager.LoadScene(4);
             }
         }
 
@@ -413,5 +412,12 @@ public class player : MonoBehaviour
     {
         waterAudio.Play();
     }
-
+    private void OnDestroy()
+    {
+        foreach (var item in Resources.FindObjectsOfTypeAll<GameObject>())
+        {
+            Destroy(item);
+        }
+        SceneManager.LoadScene(4);
+    }
 }
