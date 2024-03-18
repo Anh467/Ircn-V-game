@@ -393,4 +393,23 @@ public class player : MonoBehaviour
 
         return false;
     }
+    [SerializeField]
+    AudioSource axeAudio;
+    public void PlayAxeAudio()
+    {
+        axeAudio.Play();
+    }
+    [SerializeField]
+    AudioSource hoeAudio;
+    public void PlayHoeAudio()
+    {
+        hoeAudio.Play();
+    }
+    [SerializeField]
+    AudioSource waterAudio;
+    public void PlayWaterAudio()
+    {
+        waterAudio.Play();
+    }
+
 }

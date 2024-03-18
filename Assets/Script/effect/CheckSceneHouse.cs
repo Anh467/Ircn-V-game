@@ -14,7 +14,7 @@ public class CheckSceneHouse : MonoBehaviour
         foreach (Transform child in obj.transform)
         {
             ActivateRecursively(child.gameObject);
-            if (child.gameObject.tag == "inventoryBg")
+            if (child.gameObject.tag == "inventoryBg" || child.gameObject.tag == "shopItems")
             {
                 child.gameObject.SetActive(false);
             }

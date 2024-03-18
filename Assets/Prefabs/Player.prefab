@@ -58,6 +58,9 @@ MonoBehaviour:
   slot_select_item: {fileID: 0}
   slot_budget_player: {fileID: 0}
   select_item_index: 0
+  axeAudio: {fileID: 0}
+  hoeAudio: {fileID: 0}
+  waterAudio: {fileID: 0}
 --- !u!95 &640363515974146493
 Animator:
   serializedVersion: 5
