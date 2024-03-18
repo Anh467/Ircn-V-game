@@ -7555,6 +7555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 3525136869442009309}
+  shopSellInventory: {fileID: 0}
   slots_UI:
   - {fileID: 3525136868408894261}
   - {fileID: 3525136868819099751}

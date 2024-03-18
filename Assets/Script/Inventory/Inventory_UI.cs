@@ -29,7 +29,9 @@ public class Inventory_UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        shopSellInventory.SetActive(false);
         inventoryPanel.SetActive(false);
+
         /*for (int i = 0; i < playerr.inventory.items.Count; i++)
         {
             slots_UI.Add(new Slot_UI());
