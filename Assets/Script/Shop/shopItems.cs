@@ -17,10 +17,11 @@ public class shopItems : MonoBehaviour
     TextMeshProUGUI status;
     [SerializeField]
     TextMeshProUGUI price;
-
+    [SerializeField]
+    TextMeshProUGUI LevelText;
     bool Shop = false;
     bool Shop2A = false;
-
+    int Level = 1;
     private void Awake()
     {
         Instance = this;
@@ -34,6 +35,7 @@ public class shopItems : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        LevelText.text = Level.ToString();
     }
     public int? BuyPriceOnShop(CollectableType type)
     {
@@ -92,5 +94,14 @@ public class shopItems : MonoBehaviour
     public List<GameObject> GetBuyShopItems()
     {
         return BuyItems;
+    }
+
+    public void IncLevel()
+    {
+        Level++;
+    }
+    public int GetLevel()
+    {
+        return Level;
     }
 }

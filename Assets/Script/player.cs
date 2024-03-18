@@ -375,16 +375,15 @@ public class player : MonoBehaviour
         }
     }
     float timeOverCount = 0;
-    int hardMode = 1;
-    int moneyToLife = 1000;
+    int moneyToLife = 1;
     public bool GameOverCheck()
     {
         timeOverCount += Time.deltaTime;
         Debug.Log(timeOverCount);
-        if (timeOverCount > 300f)
+        if (timeOverCount > 3f)
         {
-            inventory.PlayerBudget -= moneyToLife * hardMode;
-            hardMode += 1;
+            inventory.PlayerBudget -= moneyToLife * shopItems.Instance.GetLevel();
+            shopItems.Instance.IncLevel();
             timeOverCount = 0;
             if (inventory.PlayerBudget < 0)
             {

@@ -101,7 +101,12 @@ public class Inventory_UI : MonoBehaviour
     private void SetUpShop()
     {
         var buyItems = shopItems.Instance.GetBuyShopItems();
-        for (int i = 0; i < buyItems.Count; i++)
+        int limit = buyItems.Count > shopItems.Instance.GetLevel() ? shopItems.Instance.GetLevel() : buyItems.Count;
+        for (int i = 0; i < slots_UI.Count; i++)
+        {
+            slots_UI[i].SetEmpty();
+        }
+        for (int i = 0; i < limit; i++)
         {
             Collectable collectable = buyItems[i].GetComponent<Collectable>();
             slots_UI[i].SetItem(collectable.GetItem());
